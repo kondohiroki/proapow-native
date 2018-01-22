@@ -11,6 +11,8 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
+import { SearchBar } from 'react-native-elements'
+
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -18,9 +20,16 @@ export default class SearchScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Search</Text>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <SearchBar
+            round
+            lightTheme
+            // onChangeText={}
+            // onClearText={}
+            placeholder='กำลังมองหาอะไรอยู่เหรอ?' />
+        </View>
+      </ScrollView>
     );
   }
 
