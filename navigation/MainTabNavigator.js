@@ -35,21 +35,21 @@ export default TabNavigator(
           case 'Home':
             iconName =
               Platform.OS === 'ios'
-              ? `md-home${focused ? '' : '-outline'}` : 'md-home';
+              ? `ios-home${focused ? '' : '-outline'}` : 'md-home';
             break;
           case 'Search':
             iconName = Platform.OS === 'ios'
-            ? `md-search${focused ? '' : '-outline'}` : 'md-search';
+            ? `ios-search${focused ? '' : '-outline'}` : 'md-search';
             break;
           case 'Nearby':
             iconName =
               Platform.OS === 'ios'
-              ? `md-pin${focused ? '' : '-outline'}` : 'md-pin';
+              ? `ios-pin${focused ? '' : '-outline'}` : 'md-pin';
             break
           case 'Profile':
             iconName =
               Platform.OS === 'ios'
-              ? `md-person${focused ? '' : '-outline'}` : 'md-person';
+              ? `ios-person${focused ? '' : '-outline'}` : 'md-person';
         }
         return (
           <Ionicons
