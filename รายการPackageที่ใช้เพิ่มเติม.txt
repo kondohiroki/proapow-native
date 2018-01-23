@@ -1,1 +1,7 @@
 1. react-native-elements: https://github.com/KevM/React-Native-Elements
+
+2. react-native-material-textfield
+https://www.npmjs.com/package/react-native-material-textfield
+
+3. react-native-hide-show-password-input
+https://www.npmjs.com/package/react-native-hide-show-password-input

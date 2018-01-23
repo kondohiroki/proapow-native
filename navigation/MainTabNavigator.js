@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import NearbyScreen from '../screens/NearbyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 export default TabNavigator(
   {
@@ -22,7 +23,7 @@ export default TabNavigator(
       screen: NearbyScreen,
     },
     Profile: {
-      screen: ProfileScreen,
+      screen: LoginScreen,
     },
   },
   {
