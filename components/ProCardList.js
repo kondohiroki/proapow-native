@@ -8,7 +8,8 @@ import {
   ListView,
   Modal,
   StyleSheet,
-  Text
+  Text,
+  ActivityIndicator,
 } from 'react-native'
 
 const allPostsQuery = gql`
@@ -56,7 +57,11 @@ class ProCardList extends React.Component {
 
   render () {
     if (this.props.allPostsQuery.loading) {
-      return (<Text>Loading..</Text>)
+      return (//<Text>Loading..</Text>
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
     }
 
     return (
@@ -97,6 +102,11 @@ const styles = StyleSheet.create({
     height: 60,
     width: 480,
     paddingTop: 18,
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
   }
 })
 
