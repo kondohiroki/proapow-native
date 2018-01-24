@@ -4,6 +4,7 @@ import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-client-preset';
 const httpLink = new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cjcrqzl8d345c0153nfz19iy3' })
@@ -34,6 +35,7 @@ export default class App extends React.Component {
               {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
               {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
               <RootNavigation />
+              
             </View>
         </ApolloProvider>
       );

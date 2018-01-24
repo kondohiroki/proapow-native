@@ -18,7 +18,8 @@ import PasswordInputText from 'react-native-hide-show-password-input';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Login',
+    headerTitleStyle: {alignSelf: 'center' },
   };
     state = {
         password: '',
@@ -28,7 +29,7 @@ export default class LoginScreen extends React.Component {
   render() {
     let { email } = this.state;
     return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <View style={styles.container}>
         <Card
           titleStyle={{color: 'navy',}}
@@ -48,7 +49,7 @@ export default class LoginScreen extends React.Component {
                 onChangeText={ (password) => this.setState({ password }) }
             />
           </View>
-          
+
           <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
             <Button
               //icon={{name: 'code'}}
@@ -66,7 +67,7 @@ export default class LoginScreen extends React.Component {
           </View>
         </Card>
       </View>
-    </ScrollView>  
+    </ScrollView>
     );
   }
 
@@ -75,6 +76,6 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
 });

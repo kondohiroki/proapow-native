@@ -15,7 +15,8 @@ import { SearchBar } from 'react-native-elements'
 
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Search',
+    headerTitleStyle: {alignSelf: 'center' },
   };
 
   render() {

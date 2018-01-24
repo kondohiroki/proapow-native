@@ -9,17 +9,17 @@ import {
   View,
 } from 'react-native';
 
-import ProCardList from '../components/ProCardList';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header:null,
-    //title: 'Home',
-
+    title: 'Detail',
+    headerTitleStyle: {alignSelf: 'center' },
   };
   render() {
     return (
-      <ProCardList />
+      <View style={styles.container}>
+        <Text>Detail</Text>
+      </View>
     );
   }
 
@@ -29,7 +29,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
 });

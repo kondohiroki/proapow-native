@@ -13,7 +13,8 @@ import { MonoText } from '../components/StyledText';
 
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Nearby',
+    headerTitleStyle: {alignSelf: 'center' },
   };
 
   render() {
