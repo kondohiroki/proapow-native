@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
+import { Card, ListItem, Button } from 'react-native-elements'
 
 export default class ProCard extends React.Component {
 
@@ -10,9 +11,9 @@ export default class ProCard extends React.Component {
 
   componentDidMount() {
     Image.getSize(this.props.fileImg, (width, height) => {
-      const imageHeight =  250
+      const imageHeight =  200
       const scaleFactor = height / imageHeight
-      const imageWidth = width / scaleFactor
+      const imageWidth = (width / scaleFactor)
       this.setState({width: imageWidth, height: imageHeight})
     })
   }
@@ -20,18 +21,35 @@ export default class ProCard extends React.Component {
   render () {
     const {width, height} = this.state
     return (
-      <View>
-        <View style={styles.imageContainer}>
-          <Image
-            source={{ uri:this.props.fileImg}}
-            style={{width, height}}
-            resizeMode='contain'
-          />
-        </View>
-        <Text style={styles.title}>
-          {this.props.proTitle}
-        </Text>
-      </View>
+      <Card title={this.props.proTitle}>
+  {
+    <View style={styles.imageContainer}>
+        <Image
+          source={{ uri:this.props.fileImg}}
+          style={{width, height}}
+          resizeMode='contain'
+        />
+        {}
+
+    </View>
+  }
+  <Button
+    backgroundColor='#03A9F4'
+    buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
+    title='VIEW NOW' />
+</Card>
+      // <View>
+      //   <View style={styles.imageContainer}>
+      //     <Image
+      //       source={{ uri:this.props.fileImg}}
+      //       style={{width, height}}
+      //       resizeMode='contain'
+      //     />
+      //   </View>
+      //   <Text style={styles.title}>
+      //     {this.props.proTitle}
+      //   </Text>
+      // </View>
     )
   }
 }
@@ -40,7 +58,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,.07)'
+    backgroundColor: '#fff'
   },
   title: {
     padding: 22,

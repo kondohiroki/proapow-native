@@ -13,11 +13,12 @@ import ProCardList from '../components/ProCardList';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header:null,
-    //title: 'Home',
+    //header:null,
+    title: 'Home',
 
   };
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <ProCardList />
     );
