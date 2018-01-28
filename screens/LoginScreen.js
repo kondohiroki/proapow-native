@@ -23,8 +23,12 @@ export default class LoginScreen extends React.Component {
         email: '',
     };
 
+    onReadMore = () =>{
+      this.props.navigation.navigate('Register')
+    }
+
   render() {
-    
+
     let { email } = this.state;
     return (
     <ScrollView style={styles.container}>
@@ -48,21 +52,20 @@ export default class LoginScreen extends React.Component {
             />
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-            <Button
-              //icon={{name: 'code'}}
-              backgroundColor= '#03A9F4'
-              buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 7, width: 120,}}
-              title='Login'
-            />
-
-            <Button
-              //icon={{name: 'code'}}
-              backgroundColor= '#03A9F4'
-              buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, width: 120,}}
-              title='Register'
-            />
-          </View>
+          <Button
+            //icon={{name: 'code'}}
+            backgroundColor= '#03A9F4'
+            buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
+            title='Login'
+          />
+          //<Text style={{align}} >OR</Text>
+          <Button
+            //icon={{name: 'code'}}
+            backgroundColor= '#b3e6fe'
+            buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0 , marginTop: 15, width: '100%',}}
+            title='Register'
+              onPress={() => this.onReadMore()}
+          />
         </Card>
       </View>
     </ScrollView>
