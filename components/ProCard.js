@@ -7,7 +7,6 @@ export default class ProCard extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       width: 0,
       height: 0,
@@ -23,8 +22,8 @@ export default class ProCard extends React.Component {
       this.setState({width: imageWidth, height: imageHeight})
     })
   }
-  onReadMore = () =>{
-    this.props.navigation.navigate('Detail')
+  onReadMore = (d) =>{
+    this.props.navigation.navigate('Detail', {proTitle: d.proTitle, proDesc: d.proDesc, fileImg:d.fileImg} )
   }
 
   render () {
@@ -44,7 +43,7 @@ export default class ProCard extends React.Component {
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
           title='READ MORE'
-          onPress={() => this.onReadMore()}
+          onPress={() => this.onReadMore(this.props)}
         />
       </Card>
 

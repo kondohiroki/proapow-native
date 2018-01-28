@@ -72,6 +72,7 @@ class ProCardList extends React.Component {
             <ProCard
               proTitle={post.proTitle}
               fileImg={post.fileImg.url}
+              proDesc={post.proDesc}
               navigation={this.props.navigation}
             />
           )}

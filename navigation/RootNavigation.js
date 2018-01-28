@@ -20,6 +20,7 @@ const RootStackNavigator = StackNavigator(
       },
     }),
     initialRouteName: 'Main',
+    //mode:'float',
     headerMode: 'none' ,
   }
 );
