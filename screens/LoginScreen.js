@@ -58,7 +58,7 @@ export default class LoginScreen extends React.Component {
             buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
             title='Login'
           />
-          //<Text style={{align}} >OR</Text>
+          
           <Button
             //icon={{name: 'code'}}
             backgroundColor= '#b3e6fe'
