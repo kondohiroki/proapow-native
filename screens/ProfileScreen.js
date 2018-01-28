@@ -11,11 +11,11 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default class SearchScreen extends React.Component {
+export default class ProfileScreen extends React.Component {
 
 
   render() {
-    
+
     return (
       <View style={styles.container}>
         <Text>Profile</Text>

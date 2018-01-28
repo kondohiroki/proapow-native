@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StackNavigator, TabNavigator,  TabBarBottom} from 'react-navigation';
+import { SafeAreaView, StackNavigator, TabNavigator,  TabBarBottom, NavigationActions} from 'react-navigation';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
@@ -64,21 +64,21 @@ const NearbyTab = StackNavigator({
 });
 
 const ProfileTab = StackNavigator({
-  Profile:{
-    screen:LoginScreen,
-    path:'/',
-    navigationOptions: ({ navigation }) => ({
-      title: `PROFILE`,
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-    }),
-  },
   Login:{
     screen:LoginScreen,
     path:'/',
     navigationOptions: () => ({
       title: `Login`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  Profile:{
+    screen:ProfileScreen,
+    path:'/',
+    navigationOptions: ({ navigation }) => ({
+      title: `PROFILE`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
