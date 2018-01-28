@@ -12,12 +12,10 @@ import {
 import { MonoText } from '../components/StyledText';
 
 export default class SearchScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Profile',
-    headerTitleStyle: {alignSelf: 'center' },
-  };
+
 
   render() {
+    
     return (
       <View style={styles.container}>
         <Text>Profile</Text>

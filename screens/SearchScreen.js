@@ -14,12 +14,10 @@ import { MonoText } from '../components/StyledText';
 import { SearchBar } from 'react-native-elements'
 
 export default class SearchScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Search',
-    headerTitleStyle: {alignSelf: 'center' },
-  };
+
 
   render() {
+    
     return (
       <ScrollView>
         <View style={styles.container}>

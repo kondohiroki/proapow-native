@@ -1,13 +1,19 @@
 import React from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { Alert, View, Image, Text, StyleSheet } from 'react-native'
 import { Card, ListItem, Button } from 'react-native-elements'
+import { NavigationActions } from 'react-navigation'
 
 export default class ProCard extends React.Component {
 
-  state = {
-    width: 0,
-    height: 0,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      width: 0,
+      height: 0,
+    };
   }
+
 
   componentDidMount() {
     Image.getSize(this.props.fileImg, (width, height) => {
@@ -17,39 +23,31 @@ export default class ProCard extends React.Component {
       this.setState({width: imageWidth, height: imageHeight})
     })
   }
+  onReadMore = () =>{
+    this.props.navigation.navigate('Detail')
+  }
 
   render () {
-    const {width, height} = this.state
-    return (
-      <Card title={this.props.proTitle}>
-  {
-    <View style={styles.imageContainer}>
-        <Image
-          source={{ uri:this.props.fileImg}}
-          style={{width, height}}
-          resizeMode='contain'
-        />
-        {}
+    const {width, height } = this.state;
+    //const { navigate } = this.props.navigation;
 
-    </View>
-  }
-  <Button
-    backgroundColor='#03A9F4'
-    buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
-    title='VIEW NOW' />
-</Card>
-      // <View>
-      //   <View style={styles.imageContainer}>
-      //     <Image
-      //       source={{ uri:this.props.fileImg}}
-      //       style={{width, height}}
-      //       resizeMode='contain'
-      //     />
-      //   </View>
-      //   <Text style={styles.title}>
-      //     {this.props.proTitle}
-      //   </Text>
-      // </View>
+    return (
+      <Card title={this.props.proTitle}>{
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri:this.props.fileImg}}
+            style={{width, height}}
+            resizeMode='contain'
+          />
+        </View>}
+        <Button
+          backgroundColor='#03A9F4'
+          buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
+          title='READ MORE'
+          onPress={() => this.onReadMore()}
+        />
+      </Card>
+
     )
   }
 }

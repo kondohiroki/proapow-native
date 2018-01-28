@@ -10,12 +10,11 @@ import {
 } from 'react-native';
 
 
-export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Detail',
-    headerTitleStyle: {alignSelf: 'center' },
-  };
+export default class DetailScreen extends React.Component {
+
   render() {
+    //const { picture, name, email, phone, login, dob, location } = this.props.navigation.state.params;
+
     return (
       <View style={styles.container}>
         <Text>Detail</Text>

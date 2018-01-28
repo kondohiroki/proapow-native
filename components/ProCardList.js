@@ -40,10 +40,7 @@ class ProCardList extends React.Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       dataSource: ds.cloneWithRows([]),
-      modalVisible: false,
-      user: undefined,
     }
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,7 +52,9 @@ class ProCardList extends React.Component {
     }
   }
 
+
   render () {
+
     if (this.props.allPostsQuery.loading) {
       return (//<Text>Loading..</Text>
         <View style={[styles.container, styles.horizontal]}>
@@ -66,13 +65,6 @@ class ProCardList extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Modal
-          animationType='slide'
-          transparent={true}
-          visible={this.state.modalVisible}
-        >
-        </Modal>
-
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
@@ -80,6 +72,7 @@ class ProCardList extends React.Component {
             <ProCard
               proTitle={post.proTitle}
               fileImg={post.fileImg.url}
+              navigation={this.props.navigation}
             />
           )}
         />

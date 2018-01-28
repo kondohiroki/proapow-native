@@ -17,16 +17,14 @@ import { TextField } from 'react-native-material-textfield';
 import PasswordInputText from 'react-native-hide-show-password-input';
 
 export default class LoginScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Login',
-    headerTitleStyle: {alignSelf: 'center' },
-  };
+
     state = {
         password: '',
         email: '',
     };
 
   render() {
+    
     let { email } = this.state;
     return (
     <ScrollView style={styles.container}>

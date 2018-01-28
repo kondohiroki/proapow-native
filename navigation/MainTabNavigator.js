@@ -1,8 +1,7 @@
 import React from 'react';
+import { SafeAreaView, StackNavigator, TabNavigator,  TabBarBottom} from 'react-navigation';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
-
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -10,60 +9,156 @@ import SearchScreen from '../screens/SearchScreen';
 import NearbyScreen from '../screens/NearbyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
+import DetailScreen from '../screens/DetailScreen';
 
-export default TabNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Search: {
-      screen: SearchScreen,
-    },
-    Nearby: {
-      screen: NearbyScreen,
-    },
-    Profile: {
-      screen: LoginScreen,
-    },
+const HomeTab = StackNavigator({
+  Home:{
+    screen:HomeScreen,
+    path:'/',
+    navigationOptions: () => ({
+      header:null,
+      // title: `PROMOTION TODAY!`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+
   },
-  {
+  Detail:{
+    screen:DetailScreen,
+    path:'/',
     navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        switch (routeName) {
-          case 'Home':
-            iconName =
-              Platform.OS === 'ios'
-              ? `ios-home${focused ? '' : '-outline'}` : 'md-home';
-            break;
-          case 'Search':
-            iconName = Platform.OS === 'ios'
-            ? `ios-search${focused ? '' : '-outline'}` : 'md-search';
-            break;
-          case 'Nearby':
-            iconName =
-              Platform.OS === 'ios'
-              ? `ios-pin${focused ? '' : '-outline'}` : 'md-pin';
-            break
-          case 'Profile':
-            iconName =
-              Platform.OS === 'ios'
-              ? `ios-person${focused ? '' : '-outline'}` : 'md-person';
-        }
-        return (
+      title: `Detail`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+});
+
+const SearchTab = StackNavigator({
+  Search:{
+    screen:SearchScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `SEARCH PROMOTION!`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+});
+
+const NearbyTab = StackNavigator({
+  Nearby:{
+    screen:NearbyScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `NEARBY PROMOTION!`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+});
+
+const ProfileTab = StackNavigator({
+  Profile:{
+    screen:ProfileScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `PROFILE`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  Login:{
+    screen:LoginScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `Login`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+});
+
+const StacksInTabs = TabNavigator(
+  {
+    //MainTab Button
+    HomeTab: {
+      screen: HomeTab,
+      navigationOptions: {
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ focused }) => (
           <Ionicons
-            name={iconName}
+            name={
+              Platform.OS === 'ios'
+              ? `ios-home${focused ? '' : '-outline'}` : 'md-home'}
             size={28}
             style={{ marginBottom: -3 }}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           />
-        );
+        ),
       },
-    }),
+    },
+    SearchTab: {
+      screen: SearchTab,
+      navigationOptions: {
+        tabBarLabel: 'Search',
+        tabBarIcon: ({ focused }) => (
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+              ? `ios-search${focused ? '' : '-outline'}` : 'md-search'}
+            size={28}
+            style={{ marginBottom: -3 }}
+            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+          />
+        ),
+      },
+    },
+    NearbyTab: {
+      screen: NearbyTab,
+      navigationOptions: {
+        tabBarLabel: 'Nearby',
+        tabBarIcon: ({ focused }) => (
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+              ? `ios-pin${focused ? '' : '-outline'}` : 'md-pin'}
+            size={28}
+            style={{ marginBottom: -3 }}
+            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+          />
+        ),
+      },
+    },
+    ProfileTab: {
+      screen: ProfileTab,
+      navigationOptions: {
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ focused }) => (
+          <Ionicons
+            name={
+              Platform.OS === 'ios'
+              ? `ios-person${focused ? '' : '-outline'}` : 'md-person'}
+            size={28}
+            style={{ marginBottom: -3 }}
+            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+          />
+        ),
+      },
+    },
+  },
+  {
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
-    animationEnabled: false,
-    swipeEnabled: false,
+
   }
 );
+
+
+export default StacksInTabs;

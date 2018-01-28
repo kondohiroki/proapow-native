@@ -20,6 +20,7 @@ export default class App extends React.Component {
   };
 
   render() {
+    
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -35,7 +36,7 @@ export default class App extends React.Component {
               {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
               {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
               <RootNavigation />
-              
+
             </View>
         </ApolloProvider>
       );
