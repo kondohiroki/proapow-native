@@ -10,6 +10,7 @@ import NearbyScreen from '../screens/NearbyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DetailScreen from '../screens/DetailScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const HomeTab = StackNavigator({
   Home:{
@@ -64,9 +65,9 @@ const NearbyTab = StackNavigator({
 
 const ProfileTab = StackNavigator({
   Profile:{
-    screen:ProfileScreen,
+    screen:LoginScreen,
     path:'/',
-    navigationOptions: () => ({
+    navigationOptions: ({ navigation }) => ({
       title: `PROFILE`,
       headerTitleStyle: {
         fontWeight: 'normal',
@@ -78,6 +79,16 @@ const ProfileTab = StackNavigator({
     path:'/',
     navigationOptions: () => ({
       title: `Login`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  Register:{
+    screen:RegisterScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `Register`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
