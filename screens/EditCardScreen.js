@@ -42,6 +42,7 @@ export default class EditCardScreen extends React.Component {
         backgroundColor='#03A9F4'
         buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 20, marginTop: 10 }}
         title='ADD CARD'
+        onPress={() => this.props.navigation.navigate('AddCard')}
 
       />
 

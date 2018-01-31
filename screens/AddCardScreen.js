@@ -1,74 +1,88 @@
-import React, { Component } from "react";
+import React from 'react';
 import {
+  Image,
+  Platform,
+  ScrollView,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   View,
-} from "react-native";
+  Picker,
+} from 'react-native';
 
-import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+import { MonoText } from '../components/StyledText';
+import { TextField } from 'react-native-material-textfield';
+import { Tile, List, ListItem, Button, Card } from 'react-native-elements';
+import { Dropdown } from 'react-native-material-dropdown';
+export default class AddCardScreen extends React.Component {
 
-const s = StyleSheet.create({
-  container: {
-    backgroundColor: "#F5F5F5",
-    marginTop: 60,
-  },
-  label: {
-    color: "black",
-    fontSize: 12,
-  },
-  input: {
-    fontSize: 16,
-    color: "black",
-  },
-});
-
-const USE_LITE_CREDIT_CARD_INPUT = false;
-
-export default class AddCardScreen extends Component {
-  static navigationOptions = {
-    title: 'AddCard',
-    headerTitleStyle: {alignSelf: 'center' },
-  };
-  _onChange = formData => {
-    /* eslint no-console: 0 */
-    console.log(JSON.stringify(formData, null, " "));
-  };
-
-  _onFocus = field => {
-    /* eslint no-console: 0 */
-    console.log(field);
-  };
 
   render() {
+    let bankdata = [{
+      value: 'KASIKORN BANK',
+    }, {
+      value: 'BANGKOK BANK',
+    }, {
+      value: 'TMB BANK',
+    }, {
+      value: 'KRUNGSRI BANK',
+    }];
+
     return (
-      <View style={s.container}>
-        { USE_LITE_CREDIT_CARD_INPUT ?
-          (<LiteCreditCardInput
-              autoFocus
-              inputStyle={s.input}
+      <ScrollView>
+      <View style={styles.container}>
+      <Card
+        titleStyle={{color: 'navy',}}
+        title='NEW CARD'>
 
-              validColor={"black"}
-              invalidColor={"red"}
-              placeholderColor={"darkgray"}
+        <Dropdown
+        label='BANK NAME'
+        data={bankdata}
+        />
 
-              onFocus={this._onFocus}
-              onChange={this._onChange} />) :
-            (<CreditCardInput
-                autoFocus
+        <TextField
+          label='CARD NUMBER'
+          //placeholder='Jiradej'
+          //onChangeText={(text) => this.setState({lastname: text})}
+        />
+        <TextField
+          label='CARD NAME'
+          //placeholder="korn@gmail.com"
+          //onChangeText={(text) => this.setState({email: text})}
+          //value={this.state.email}
+        />
+        <TextField
+          label='EXP'
+          placeholder='MM/YY'
+          //onChangeText={(text) => this.setState({email: text})}
+          //value={this.state.email}
+        />
 
-                requiresName
-                requiresCVC
-                requiresPostalCode
 
-                labelStyle={s.label}
-                inputStyle={s.input}
-                validColor={"black"}
-                invalidColor={"red"}
-                placeholderColor={"darkgray"}
-
-                onFocus={this._onFocus}
-                onChange={this._onChange} />)
-        }
+        <Button
+          backgroundColor= '#03A9F4'
+          buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginTop: 10, width: '100%',}}
+          title='SAVE'
+          onPress={() => this.createPost()}
+        />
+      </Card>
       </View>
+      </ScrollView>
     );
   }
+
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+
+  },
+  img: {
+    width: 300,
+    height:250,
+    resizeMode: 'contain',
+    marginLeft:22,
+  }
+});

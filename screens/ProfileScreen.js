@@ -19,7 +19,7 @@ export default class ProfileScreen extends React.Component {
     return (
       <ScrollView>
         <Tile
-          imageSrc={{require: ('../images/korn')}}
+          imageSrc={{require: ('../images/kfc1.jpg')}}
           featured
           title= 'Korn Jiradej'
           caption='korn@gmail.com'
@@ -31,7 +31,7 @@ export default class ProfileScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('ProfileSetting')}
           />
           <ListItem
-            title='EDIT CARD'
+            title='My CARD'
             onPress={() => this.props.navigation.navigate('EditCard')}
           />
           <ListItem

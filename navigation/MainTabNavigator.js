@@ -13,6 +13,7 @@ import DetailScreen from '../screens/DetailScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import EditCardScreen from '../screens/EditCardScreen';
+import AddCardScreen from '../screens/AddCardScreen';
 
 const HomeTab = StackNavigator({
   Home:{
@@ -101,7 +102,17 @@ const ProfileTab = StackNavigator({
     screen:EditCardScreen,
     path:'/',
     navigationOptions: () => ({
-      title: `EDIT CARD`,
+      title: `MY CARD`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  AddCard:{
+    screen:AddCardScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `ADD CARD`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
