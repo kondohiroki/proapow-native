@@ -57,8 +57,9 @@ export default class LoginScreen extends React.Component {
             backgroundColor= '#03A9F4'
             buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
             title='Login'
+            onPress={() => this.props.navigation.navigate('Profile')}
           />
-          
+
           <Button
             //icon={{name: 'code'}}
             backgroundColor= '#b3e6fe'

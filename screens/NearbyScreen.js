@@ -14,7 +14,7 @@ import { MonoText } from '../components/StyledText';
 
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import { empty } from 'apollo-client/node_modules/apollo-link';
+//import { empty } from 'apollo-client/node_modules/apollo-link';
 //import { error } from 'util';
 
 const {width, height} = Dimensions.get('window')
@@ -52,21 +52,21 @@ export default class NearbyScreen extends React.Component {
         coordinates: {
           latitude: 13.818287,
           longitude: 100.514566
-        },  
+        },
       },
       {
         title: 'ยามีละห์ข้าวหมกไก่ พระราม๗',
         coordinates: {
           latitude: 13.8179756,
           longitude: 100.5154755
-        },  
+        },
       },
       {
         title: 'Nai Ek นายเอก',
         coordinates: {
           latitude: 13.818428,
           longitude: 100.5157853
-        },  
+        },
       }]
     }
   }
@@ -76,7 +76,7 @@ export default class NearbyScreen extends React.Component {
   state = {
     regionSet: false,
   }
-  
+
   componentDidMount() {
 
     function error(err) {
@@ -122,14 +122,14 @@ export default class NearbyScreen extends React.Component {
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID)
   }
-  
+
   /*onRegionChange = (region) => {
     if (!this.state.regionSet) return;
     this.setState({
       region
     });
   }*/
-  
+
   render() {
     return (
       <View style={styles.container}>
@@ -139,14 +139,14 @@ export default class NearbyScreen extends React.Component {
           //onRegionChange={this.onRegionChange}
         >
           {this.state.markers.map(marker => (
-            <MapView.Marker 
+            <MapView.Marker
               coordinate={marker.coordinates}
               title={marker.title}
               image={require('../assets/images/smallpin.png')}
             />
           ))}
           {this.state.markers.map(marker => (
-            <MapView.Marker 
+            <MapView.Marker
               coordinate={this.state.markerPosition}>
                 <View style={styles.trackMarker}>
                 </View>

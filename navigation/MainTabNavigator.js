@@ -11,6 +11,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DetailScreen from '../screens/DetailScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import ProfileSettingScreen from '../screens/ProfileSettingScreen';
+import EditCardScreen from '../screens/EditCardScreen';
 
 const HomeTab = StackNavigator({
   Home:{
@@ -64,6 +66,7 @@ const NearbyTab = StackNavigator({
 });
 
 const ProfileTab = StackNavigator({
+
   Login:{
     screen:LoginScreen,
     path:'/',
@@ -79,6 +82,26 @@ const ProfileTab = StackNavigator({
     path:'/',
     navigationOptions: ({ navigation }) => ({
       title: `PROFILE`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  ProfileSetting:{
+    screen:ProfileSettingScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `PROFILE SETTING`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  EditCard:{
+    screen:EditCardScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `EDIT CARD`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
@@ -163,7 +186,9 @@ const StacksInTabs = TabNavigator(
         ),
       },
     },
+
   },
+
   {
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
