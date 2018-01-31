@@ -11,7 +11,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 import { Tile, List, ListItem } from 'react-native-elements';
-export default class ProfileScreen extends React.Component {
+export default class ShopTerminalScreen extends React.Component {
 
 
   render() {
@@ -21,22 +21,18 @@ export default class ProfileScreen extends React.Component {
         <Tile
           imageSrc={{require: ('../images/kfc1.jpg')}}
           featured
-          title= 'Korn Jiradej'
-          caption='korn@gmail.com'
+          title= 'โคกู โคขุนโพนยางคำ'
+          //caption='korn@gmail.com'
         />
 
         <List>
           <ListItem
-            title='PROFILE SETTING'
-            onPress={() => this.props.navigation.navigate('ProfileSetting')}
+            title='SHOP SETTING'
+            onPress={() => this.props.navigation.navigate('ShopSetting')}
           />
           <ListItem
-            title='My CARD'
-            onPress={() => this.props.navigation.navigate('EditCard')}
-          />
-          <ListItem
-            title='MY SHOP'
-            onPress={() => this.props.navigation.navigate('ShopTerminal')}
+            title='EDIT PROMOTION'
+            onPress={() => this.props.navigation.navigate('PromotionEdit')}
           />
 
         </List>

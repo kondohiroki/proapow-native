@@ -15,7 +15,7 @@ import { TextField } from 'react-native-material-textfield';
 import PasswordInputText from 'react-native-hide-show-password-input';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
-export default class ProfileSettingScreen extends React.Component {
+export default class ShopSettingScreen extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -31,11 +31,11 @@ export default class ProfileSettingScreen extends React.Component {
     _showCloseTimePicker = () => this.setState({ isCloseTimePickerVisible: true });
     _hideCloseTimePicker = () => this.setState({ isCloseTimePickerVisible: false });
 
-    _handleTimePicked = (date) => {
-        console.log('A date has been picked: ', date);
+    _handleTimePicked = (time) => {
+        console.log('A time has been picked: ', time);
         this._hideOpenTimePicker();
         this._hideCloseTimePicker();
-      };
+    };
 
     render() {
         const { checkedMon, checkedTue, checkedWed, checkedThu, checkedFri, checkedSat, checkedSun } = this.state;
