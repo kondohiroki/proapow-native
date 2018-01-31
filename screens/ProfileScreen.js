@@ -36,6 +36,7 @@ export default class ProfileScreen extends React.Component {
           />
           <ListItem
             title='MY SHOP'
+            onPress={() => this.props.navigation.navigate('ShopSetting')}
           />
 
         </List>

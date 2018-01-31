@@ -14,6 +14,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import EditCardScreen from '../screens/EditCardScreen';
 import AddCardScreen from '../screens/AddCardScreen';
+import ShopSettingScreen from '../screens/ShopSettingScreen'
 
 const HomeTab = StackNavigator({
   Home:{
@@ -122,7 +123,17 @@ const ProfileTab = StackNavigator({
     screen:RegisterScreen,
     path:'/',
     navigationOptions: () => ({
-      title: `Register`,
+      title: `REGISTER`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  ShopSetting:{
+    screen:ShopSettingScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `SHOP INFO`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
