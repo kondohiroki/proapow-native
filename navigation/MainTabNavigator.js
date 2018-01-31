@@ -17,6 +17,7 @@ import AddCardScreen from '../screens/AddCardScreen';
 import ShopSettingScreen from '../screens/ShopSettingScreen'
 import ShopTerminalScreen from '../screens/ShopTerminalScreen'
 import PromotionEditScreen from '../screens/PromotionEditScreen'
+import AddPromotionScreen from '../screens/AddPromotionScreen'
 
 const HomeTab = StackNavigator({
   Home:{
@@ -156,6 +157,16 @@ const ProfileTab = StackNavigator({
     path:'/',
     navigationOptions: () => ({
       title: `PROMOTION EDIT`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  PromotionAdd:{
+    screen:AddPromotionScreen,
+    path:'/',
+    navigationOptions: () => ({
+      title: `PROMOTION ADD`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },

@@ -34,6 +34,10 @@ export default class ShopTerminalScreen extends React.Component {
             title='EDIT PROMOTION'
             onPress={() => this.props.navigation.navigate('PromotionEdit')}
           />
+          <ListItem
+            title='ADD PROMOTION'
+            onPress={() => this.props.navigation.navigate('PromotionAdd')}
+          />
 
         </List>
 
