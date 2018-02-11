@@ -14,21 +14,21 @@ import { MonoText } from '../components/StyledText';
 
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-//import { empty } from 'apollo-client/node_modules/apollo-link';
-//import { error } from 'util';
+import geolib from 'geolib';
 
 const {width, height} = Dimensions.get('window')
-
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
 const ASPECT_RATIO = width/height
-const LATTITUDE_DELTA = 0.0922
+const LATTITUDE_DELTA = 0.0322
 const LONGTITUDE_DELTA = LATTITUDE_DELTA * ASPECT_RATIO
+
+const pin = '../assets/images/redpin.png'
+const robot = '../assets/images/greenpin.png'
 
 export default class NearbyScreen extends React.Component {
   constructor(props){
     super(props)
-
     this.state = {
       initialPosition: {
         latitude: 0,
@@ -41,6 +41,8 @@ export default class NearbyScreen extends React.Component {
         longitude: 0
       },
       markers: [{
+        id:1,
+        inRange: false,
         title: 'KMUTNB rocket',
         coordinates: {
           latitude: 13.819112,
@@ -48,6 +50,8 @@ export default class NearbyScreen extends React.Component {
         },
       },
       {
+        id:2,
+        inRange: false,
         title: 'โคกู โคขุนโพนยางคำ',
         coordinates: {
           latitude: 13.818287,
@@ -55,6 +59,8 @@ export default class NearbyScreen extends React.Component {
         },
       },
       {
+        id:3,
+        inRange: false,
         title: 'ยามีละห์ข้าวหมกไก่ พระราม๗',
         coordinates: {
           latitude: 13.8179756,
@@ -62,28 +68,53 @@ export default class NearbyScreen extends React.Component {
         },
       },
       {
+        id:4,
+        inRange: false,
         title: 'Nai Ek นายเอก',
         coordinates: {
           latitude: 13.818428,
           longitude: 100.5157853
         },
-      }]
+      },
+      {
+        id:5,
+        inRange: false,
+        title: 'ร้านฟ้า',
+        coordinates: {
+          latitude: 13.8203325,
+          longitude: 100.5210625
+        },
+      },
+      {
+        id:6,
+        inRange: false,
+        title: 'KFC วงศ์สว่าง',
+        coordinates: {
+          latitude: 13.8271446,
+          longitude: 100.5277249
+        },
+      },
+      {
+        id:7,
+        inRange: false,
+        title: 'เตี๋ยวเหอะ',
+        coordinates: {
+          latitude: 13.8247659,
+          longitude: 100.5153173
+        },
+      },]
     }
   }
-
-  //watchID: ?number = null
 
   state = {
     regionSet: false,
   }
 
   componentDidMount() {
-
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     };
-
-    navigator.geolocation.getCurrentPosition((position) => {
+    /*navigator.geolocation.getCurrentPosition((position) => {
         var lat = parseFloat(position.coords.latitude)
         var long = parseFloat(position.coords.longitude)
 
@@ -95,17 +126,16 @@ export default class NearbyScreen extends React.Component {
         }
         /*onMapReady=() => {
           this.setState({ regionSet: true });
-        }*/
+  }*//*
         this.setState({initialPosition: initialRegion})
         this.setState({markerPosition: initialRegion})
-      },
+  },
       (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 25000, maximumAge: 3600000})
+      {enableHighAccuracy: true, timeout: 25000, maximumAge: 3600000})*/
 
       this.watchID = navigator.geolocation.watchPosition((position) => {
         var lat = parseFloat(position.coords.latitude)
         var long = parseFloat(position.coords.longitude)
-
         var lastRegion = {
           latitude: lat,
           longitude: long,
@@ -114,21 +144,24 @@ export default class NearbyScreen extends React.Component {
         }
         this.setState({initialPosition: lastRegion})
         this.setState({markerPosition: lastRegion})
+
+        this.state.markers.map(marker => {
+          isinrange = geolib.isPointInCircle(
+          {latitude: marker.coordinates.latitude,longitude: marker.coordinates.longitude},
+          {latitude: lastRegion.latitude, longitude: lastRegion.longitude},
+          1000
+        )
+        marker.inRange=isinrange
+        this.setState({inRange: isinrange})
+      })
       },
       (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 2000, distanceFilter: 10})
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10})
   }
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID)
   }
-
-  /*onRegionChange = (region) => {
-    if (!this.state.regionSet) return;
-    this.setState({
-      region
-    });
-  }*/
 
   render() {
     return (
@@ -136,27 +169,33 @@ export default class NearbyScreen extends React.Component {
         <MapView
           style={styles.map}
           region={this.state.initialPosition}
-          //onRegionChange={this.onRegionChange}
         >
-          {this.state.markers.map(marker => (
-            <MapView.Marker
-              coordinate={marker.coordinates}
-              title={marker.title}
-              image={require('../assets/images/smallpin.png')}
-            />
-          ))}
-          {this.state.markers.map(marker => (
-            <MapView.Marker
-              coordinate={this.state.markerPosition}>
-                <View style={styles.trackMarker}>
-                </View>
-            </MapView.Marker>
-          ))}
+          {this.state.markers.map(function(marker){
+            if(marker.inRange){
+              return <MapView.Marker
+                key={marker.id}
+                coordinate={marker.coordinates}
+                title={marker.title}
+                image={require(robot)}
+              />
+            }else{
+              return <MapView.Marker
+                key={marker.id}
+                coordinate={marker.coordinates}
+                title={marker.title}
+                image={require(pin)}
+              />
+            }
+          })}
+          <MapView.Marker
+            coordinate={this.state.markerPosition}>
+              <View style={styles.trackMarker}>
+              </View>
+          </MapView.Marker>
         </MapView>
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -180,7 +219,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0, 112, 255, 0.3)',
     alignItems: 'center',
     justifyContent: 'center',
-    //marginBottom: -25,
   },
   trackMarker: {
     height: 20,
