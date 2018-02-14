@@ -7,25 +7,99 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AsyncStorage,
+  Alert,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
-
 import { Card, ListItem, Button } from 'react-native-elements';
-
 import { TextField } from 'react-native-material-textfield';
 import PasswordInputText from 'react-native-hide-show-password-input';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-export default class LoginScreen extends React.Component {
+const signinUser = gql`
+mutation ($email: String!, $password: String!) {
+  signinUser(
+    email: {
+     email: $email
+     password:$password
+    }
+  ) {
+    token
+     user{
+      id
+    }
+   }
+}`
 
-    state = {
+
+class LoginScreen extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
         password: '',
         email: '',
     };
+  }
+
+
+
+
+    createPost = async () => {
+       const {email, password} = this.state
+       if(email && password){
+         try {
+           await this.props.signinUser({
+             variables: {email, password}
+           })
+           
+           AsyncStorage.setItem([['@email', email], ['@userId', '']])
+           const value = await AsyncStorage.getItem('@userId');
+           // Alert.alert(
+           //   'WELCOME',
+           //   email,
+           //   [
+           //     {text: 'OK', onPress: () => console.log(value)},
+           //   ],
+           //    { cancelable: false }
+           //  )
+          this.props.navigation.navigate('Profile')
+         } catch (e) {
+           Alert.alert(
+             'ALERT',
+             'Email or Password Wrong',
+             [
+
+               {text: 'OK', onPress: () => console.log('OK Pressed')},
+             ],
+              { cancelable: false }
+            )
+         }
+       }else {
+         Alert.alert(
+           'ALERT',
+           'CANNOT BE NULL',
+           [
+
+             {text: 'OK', onPress: () => console.log('OK Pressed')},
+           ],
+            { cancelable: false }
+          )
+       }
+
+
+       //this.onComplete()
+
+
+     }
 
     onReadMore = () =>{
       this.props.navigation.navigate('Register')
     }
+
+
 
   render() {
 
@@ -57,7 +131,7 @@ export default class LoginScreen extends React.Component {
             backgroundColor= '#03A9F4'
             buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
             title='Login'
-            onPress={() => this.props.navigation.navigate('Profile')}
+            onPress={() => this.createPost()}
           />
 
           <Button
@@ -81,3 +155,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default graphql(signinUser, {name: 'signinUser'})(LoginScreen)

@@ -7,16 +7,41 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AsyncStorage,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 import { Tile, List, ListItem } from 'react-native-elements';
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
+// const userQeury = gql`
+//   query ($email: String!){
+//     User(email:$email) {
+//       id
+//       firstname
+//       lastname
+//       email
+//     }
+//   }
+//   `
+
+const value = AsyncStorage.getItem('@email');
 export default class ProfileScreen extends React.Component {
+
+  constructor(props){
+    super(props);
+
+  }
+
+
 
 
   render() {
+    console.log(value);
 
     return (
+
       <ScrollView>
         <Tile
           imageSrc={{require: ('../images/kfc1.jpg')}}
@@ -53,3 +78,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+//export default graphql(userQeury, {name: 'userQeury'})(ProfileScreen)

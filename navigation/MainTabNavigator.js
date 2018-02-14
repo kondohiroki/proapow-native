@@ -87,6 +87,7 @@ const ProfileTab = StackNavigator({
     path:'/',
     navigationOptions: ({ navigation }) => ({
       title: `PROFILE`,
+      header:null,
       headerTitleStyle: {
         fontWeight: 'normal',
       },
