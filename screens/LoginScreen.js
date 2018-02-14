@@ -54,9 +54,9 @@ class LoginScreen extends React.Component {
            await this.props.signinUser({
              variables: {email, password}
            })
-          
-           AsyncStorage.multiSet([['@email', email], ['@userId', '']])
-           const value = await AsyncStorage.getItem('@userId');
+
+           AsyncStorage.setItem('@id', email)
+           //const value = await AsyncStorage.getItem('@userId');
            // Alert.alert(
            //   'WELCOME',
            //   email,

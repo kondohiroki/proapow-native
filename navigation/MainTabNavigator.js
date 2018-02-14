@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StackNavigator, TabNavigator,  TabBarBottom, NavigationActions} from 'react-navigation';
-import { Platform } from 'react-native';
+import { Platform, AsyncStorage } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 

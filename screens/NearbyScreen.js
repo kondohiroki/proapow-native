@@ -14,7 +14,7 @@ import { MonoText } from '../components/StyledText';
 
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-//import geolib from 'geolib';
+import geolib from 'geolib';
 
 const {width, height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
