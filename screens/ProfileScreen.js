@@ -17,9 +17,10 @@ import { Tile, List, ListItem } from 'react-native-elements';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+const value = AsyncStorage.getItem('@mail');
 const userQeury = gql`
-query {
-  User( email:"admin@gmail.com") {
+query ($emailtemp: String!) {
+  User( email:$emailtemp) {
     id
     firstname
     lastname
@@ -27,34 +28,20 @@ query {
   }
 }`
 
-const value = AsyncStorage.getItem('@id');
-
 class ProfileScreen extends React.Component {
   constructor(props){
     super(props);
-
+    this.state = {
+      id :'',
+    };
   }
 
 
-  // queryProfile = async () =>{
-  //   const temp = {value._55}
-  //   try {
-  //     await this.props.userQeury({
-  //       variables: {temp}
-  //     })
-  //     console.log('yes');
-  //
-  //   } catch (e) {
-  //     console.log('error');
-  //   }
-  // }
-
-
-
   render() {
+    const {data} = this.props;
 
 
-    if (this.props.userQeury.loading) {
+    if (data.loading) {
       return (
         <View style={[styles.container, styles.horizontal]}>
           <ActivityIndicator size="large" color="#0000ff" />
@@ -62,16 +49,17 @@ class ProfileScreen extends React.Component {
       )
     }
     else {
-      //console.log(value._55);
+      console.log(value);
       return (
 
         <ScrollView>
 
+
           <Tile
             imageSrc={{require: ('../images/kfc1.jpg')}}
             featured
-            title= {this.props.userQeury.User.firstname}
-            caption={this.props.userQeury.User.email}
+            title= {data.User.firstname}
+            caption={data.User.email}
           />
 
           <List>
@@ -107,4 +95,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default graphql(userQeury, {name: 'userQeury'})(ProfileScreen)
+
+export default graphql(userQeury, {
+  options:()=> {
+    name: 'userQeury'
+    console.log('option called');
+    return {variables:{emailtemp:value._55}}
+  }
+})(ProfileScreen)

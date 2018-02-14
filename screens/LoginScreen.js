@@ -44,9 +44,6 @@ class LoginScreen extends React.Component {
     };
   }
 
-
-
-
     createPost = async () => {
        const {email, password} = this.state
        if(email && password){
@@ -55,7 +52,7 @@ class LoginScreen extends React.Component {
              variables: {email, password}
            })
 
-           AsyncStorage.setItem('@id', email)
+           AsyncStorage.setItem('@mail', email)
            //const value = await AsyncStorage.getItem('@userId');
            // Alert.alert(
            //   'WELCOME',
