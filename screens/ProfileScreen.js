@@ -38,7 +38,7 @@ export default class ProfileScreen extends React.Component {
 
 
   render() {
-    console.log(value);
+    console.log(value._55);
 
     return (
 

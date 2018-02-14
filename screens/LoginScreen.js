@@ -26,7 +26,7 @@ mutation ($email: String!, $password: String!) {
      password:$password
     }
   ) {
-    token
+
      user{
       id
     }
@@ -54,8 +54,8 @@ class LoginScreen extends React.Component {
            await this.props.signinUser({
              variables: {email, password}
            })
-           
-           AsyncStorage.setItem([['@email', email], ['@userId', '']])
+          
+           AsyncStorage.multiSet([['@email', email], ['@userId', '']])
            const value = await AsyncStorage.getItem('@userId');
            // Alert.alert(
            //   'WELCOME',
