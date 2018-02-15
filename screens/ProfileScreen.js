@@ -40,26 +40,27 @@ class ProfileScreen extends React.Component {
 
   componentDidMount() {
     console.log('componentDidMount');
-    this.getStore();
-    this.props.data.startPolling(10000);
+    //this.getStore();
+    //this.props.data.startPolling(10000);
   }
 
 
   getStore = async () =>{
     try {
       const res = await AsyncStorage.getItem('@mail');
-      this.setState({res});
+      //this.setState({res});
       console.log('get success');
       console.log(res);
     } catch (e) {
       console.log('get fail');
     }
   }
+
   setStore = async (data) =>{
     try {
       await AsyncStorage.setItem('@userId',data.User.id);
       const res2 = await AsyncStorage.getItem('@userId');
-      //this.setState({res2});
+      this.setState({res2});
       console.log('set success');
       console.log(res2);
     } catch (e) {
