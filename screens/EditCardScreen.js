@@ -7,20 +7,23 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AsyncStorage,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 import { Tile, List, ListItem, Button } from 'react-native-elements';
+import CreditCardList from '../components/CreditCardList';
+
+const val = AsyncStorage.getItem('@id');
+
 export default class EditCardScreen extends React.Component {
-
-
   render() {
-
+    console.log(val);
     return (
       <ScrollView style={styles.container}>
 
       <View>
-        <Image
+        {/* <Image
           style={styles.img}
           source={require('../images/01.png')}
         />
@@ -35,7 +38,8 @@ export default class EditCardScreen extends React.Component {
         <Image
           style={styles.img}
           source={require('../images/04.png')}
-        />
+        /> */}
+        <CreditCardList/>
       </View>
 
       <Button
