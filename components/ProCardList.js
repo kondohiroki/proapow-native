@@ -42,8 +42,10 @@ class ProCardList extends React.Component {
       dataSource: ds.cloneWithRows([]),
     }
   }
+  
 
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
     if (!nextProps.allPostsQuery.loading && !nextProps.allPostsQuery.error) {
       const {dataSource} = this.state
       this.setState({

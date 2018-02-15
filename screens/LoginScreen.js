@@ -41,8 +41,12 @@ class LoginScreen extends React.Component {
     this.state = {
         password: '',
         email: '',
+
     };
   }
+  // async omponentWillMount(email) {
+  //   await AsyncStorage.clear(() => AsyncStorage.setItem('@mail', email));
+  // }
 
     createPost = async () => {
        const {email, password} = this.state
@@ -51,18 +55,20 @@ class LoginScreen extends React.Component {
            await this.props.signinUser({
              variables: {email, password}
            })
+           await AsyncStorage.clear();
+           await AsyncStorage.setItem('@mail', email);
+           console.log('--------------setItem-------------');
+           //const value = await AsyncStorage.getItem('@mail');
+           console.log('--------------getItem-------------');
+           console.log(await AsyncStorage.getItem('@mail'));
+           console.log('--------------navigate-------------');
 
-           AsyncStorage.setItem('@mail', email)
-           //const value = await AsyncStorage.getItem('@userId');
-           // Alert.alert(
-           //   'WELCOME',
-           //   email,
-           //   [
-           //     {text: 'OK', onPress: () => console.log(value)},
-           //   ],
-           //    { cancelable: false }
-           //  )
-          this.props.navigation.navigate('Profile')
+           //await AsyncStorage.clear();
+           // console.log('--------------clear()-------------');
+           // const value2 = await AsyncStorage.getItem('@mail');
+           // console.log('--------------getItem-------------');
+           // console.log(value2);
+          this.props.navigation.navigate('Profile',{mail:email})
          } catch (e) {
            Alert.alert(
              'ALERT',
@@ -74,6 +80,7 @@ class LoginScreen extends React.Component {
               { cancelable: false }
             )
          }
+
        }else {
          Alert.alert(
            'ALERT',
@@ -99,6 +106,8 @@ class LoginScreen extends React.Component {
 
 
   render() {
+    //const {data} = this.props;
+
 
     let { email } = this.state;
     return (
@@ -106,7 +115,7 @@ class LoginScreen extends React.Component {
       <View style={styles.container}>
         <Card
           titleStyle={{color: 'navy',}}
-          title='Login'>
+          title={'Login'}>
 
           <View style={{}}>
             <TextField

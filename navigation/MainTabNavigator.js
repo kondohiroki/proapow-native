@@ -77,6 +77,7 @@ const ProfileTab = StackNavigator({
     path:'/',
     navigationOptions: () => ({
       title: `Login`,
+      header:null,
       headerTitleStyle: {
         fontWeight: 'normal',
       },

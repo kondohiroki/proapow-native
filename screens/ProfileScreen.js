@@ -13,11 +13,11 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
-import { Tile, List, ListItem } from 'react-native-elements';
+import { Tile, List, ListItem, Button } from 'react-native-elements';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const value = AsyncStorage.getItem('@mail');
+
 const userQeury = gql`
 query ($emailtemp: String!) {
   User( email:$emailtemp) {
@@ -29,32 +29,79 @@ query ($emailtemp: String!) {
 }`
 
 class ProfileScreen extends React.Component {
+
   constructor(props){
     super(props);
     this.state = {
-      id :'',
+      value :'',
     };
+
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.getStore();
+    this.props.data.startPolling(10000);
+  }
+
+
+  getStore = async () =>{
+    try {
+      const res = await AsyncStorage.getItem('@mail');
+      this.setState({res});
+      console.log('get success');
+      console.log(res);
+    } catch (e) {
+      console.log('get fail');
+    }
+  }
+  setStore = async (data) =>{
+    try {
+      await AsyncStorage.setItem('@userId',data.User.id);
+      const res2 = await AsyncStorage.getItem('@userId');
+      //this.setState({res2});
+      console.log('set success');
+      console.log(res2);
+    } catch (e) {
+      console.log('set fail');
+    }
+  }
+
+  logOut = async () =>{
+    try {
+
+      this.props.navigation.navigate('Login')
+      console.log('logout success');
+    } catch (e) {
+      console.log('logout Faillllll');
+    }
+    //AsyncStorage.clear();
   }
 
 
   render() {
     const {data} = this.props;
-
-
+    this.setStore(data);
     if (data.loading) {
       return (
         <View style={[styles.container, styles.horizontal]}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )
-    }
-    else {
-      console.log(value);
+    }else if (data.error) {
+      return(
+        <Button
+          backgroundColor= '#03A9F4'
+          buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
+          title='Reload'
+          onPress={() => data.refetch()}
+        />
+      )
+    }else {
+      //console.log(value);
       return (
 
         <ScrollView>
-
-
           <Tile
             imageSrc={{require: ('../images/kfc1.jpg')}}
             featured
@@ -76,6 +123,13 @@ class ProfileScreen extends React.Component {
               onPress={() => this.props.navigation.navigate('ShopTerminal')}
             />
           </List>
+          <Button
+            //icon={{name: 'code'}}
+            backgroundColor= '#03A9F4'
+            buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
+            title='LOGOUT'
+            onPress={() => this.logOut()}
+          />
         </ScrollView>
       );
 
@@ -97,9 +151,12 @@ const styles = StyleSheet.create({
 
 
 export default graphql(userQeury, {
-  options:()=> {
+  options:(props)=> {
+    //pollInterval: 10000
     name: 'userQeury'
     console.log('option called');
-    return {variables:{emailtemp:value._55}}
+    console.log(props.navigation.state.params.mail);
+
+    return {variables:{emailtemp:props.navigation.state.params.mail}}
   }
 })(ProfileScreen)
