@@ -14,11 +14,11 @@ import { MonoText } from '../components/StyledText';
 import { Tile, List, ListItem, Button } from 'react-native-elements';
 import CreditCardList from '../components/CreditCardList';
 
-const val = AsyncStorage.getItem('@id');
+//const val = AsyncStorage.getItem('@id');
 
 export default class EditCardScreen extends React.Component {
   render() {
-    console.log(val);
+    //console.log(val);
     return (
       <ScrollView style={styles.container}>
 

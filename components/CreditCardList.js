@@ -14,24 +14,29 @@ import {
   ScrollView,
 } from 'react-native'
 
-const idval = AsyncStorage.getItem('@id')
+const idval = AsyncStorage.getItem('@userId')
 const allUserCard = gql`
-query {
+query ($user_id: ID!) {
     allCardLists(filter:{
       user:{
-        id:"$user_id"
+        id:$user_id
       }
     }){
-      cardName
-      cardNo
-      expMM
-      expYY
-      cardType {
-        cardtypeName
-      }
+        id
+        cardName
+        cardNo
+        expMM
+        expYY
+        cardAndBank{
+            bank{
+                bankName
+            }
+            cardType{
+                cardtypeName
+            }
+        }
     }
-  }
-`
+}`
 
 class CreditCardList extends React.Component {
     constructor(props) {
@@ -43,7 +48,7 @@ class CreditCardList extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.data.allCardLists)
+        //console.log(nextProps.data.CardList)
         if(!nextProps.data.loading && !nextProps.data.error){
             const {dataSource} = this.state
             this.setState({
@@ -59,7 +64,12 @@ class CreditCardList extends React.Component {
 
     render () {
         const {data} = this.props;
-        //console.log(data.allCardLists)
+        console.log('------this is idval------')
+        console.log(idval)
+        console.log('------this is idval------')
+        console.log('------this is data------')
+        console.log(data)
+        console.log('------this is data------')
         //this.cardGenerate(data)
         if(data.loading){
             return (
@@ -73,8 +83,15 @@ class CreditCardList extends React.Component {
                 <ListView
                     enableEmptySections={true}
                     dataSource={this.state.dataSource}
-                    renderRow={(rowdata) => (
-                        <text>dddd</text>
+                    renderRow={(data) => (
+                        <CreditCard
+                            cardName={data.cardName}
+                            cardNo={data.cardNo}
+                            expMM={data.expMM}
+                            expYY={data.expYY}
+                            cardbankno={data.cardAndBank.bank.bankName}
+                            cardtype={data.cardAndBank.cardType.cardtypeName}
+                        />
                     )}
                 />
             </View>
