@@ -44,6 +44,12 @@ export default class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log('AsyncStorage.clear()');
+    } catch (e) {
+      console.log('AsyncStorage.clear() error!!!!');
+    }
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/robot-dev.png'),

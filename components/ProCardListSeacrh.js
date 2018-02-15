@@ -1,5 +1,5 @@
 import React from 'react'
-import ProCard from './ProCard'
+import ProCardSearch from './ProCardSearch'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import {
@@ -10,12 +10,22 @@ import {
   StyleSheet,
   Text,
   ActivityIndicator,
+  AsyncStorage,
 } from 'react-native'
 
-const allPostsQuery = gql`
-  query {
-    allPromotions {
-      id
+const idval2 = AsyncStorage.getItem('@userId')
+const allPostsQuerySeacrh = gql`
+query ($userid: ID!){
+  allPromotions(filter:{
+    cardAndBanks_none:{
+     	cardLists_none:{
+      	user:{
+        	id:$userid
+      	}
+    	}
+    }
+  }){
+    	id
       proTitle
       fileImg {
         url
@@ -29,11 +39,12 @@ const allPostsQuery = gql`
       user{
         id
       }
-    }
-  }`
+  }
+}
+`
 
 
-class ProCardList extends React.Component {
+class ProCardListSeacrh extends React.Component {
 
   constructor(props) {
     super(props)
@@ -45,36 +56,42 @@ class ProCardList extends React.Component {
 
 
   componentWillReceiveProps(nextProps) {
-    //console.log('componentWillReceiveProps');
-    if (!nextProps.allPostsQuery.loading && !nextProps.allPostsQuery.error) {
+    console.log('componentWillReceivePropsInprocardlistSearch*******');
+    if (!nextProps.data.loading && !nextProps.data.error) {
       const {dataSource} = this.state
       this.setState({
-        dataSource: dataSource.cloneWithRows(nextProps.allPostsQuery.allPromotions),
+        dataSource: dataSource.cloneWithRows(nextProps.data.allPromotions),
       })
     }
   }
 
 
   render () {
+    const {data} = this.props;
+    console.log('------this is idval------')
+    console.log(idval2._55)
+    console.log('------this is data------')
+    console.log(data)
 
-    if (this.props.allPostsQuery.loading) {
+    if (data.loading) {
       return (//<Text>Loading..</Text>
         <View style={[styles.container, styles.horizontal]}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )
     }
+    console.log('------loaded------')
 
     return (
       <View style={styles.container}>
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={(post) => (
-            <ProCard
-              proTitle={post.proTitle}
-              fileImg={post.fileImg.url}
-              proDesc={post.proDesc}
+          renderRow={(data) => (
+            <ProCardSearch
+              proTitle={data.proTitle}
+              fileImg={data.fileImg.url}
+              proDesc={data.proDesc}
               navigation={this.props.navigation}
             />
           )}
@@ -105,5 +122,10 @@ const styles = StyleSheet.create({
     padding: 10
   }
 })
-
-export default graphql(allPostsQuery, {name: 'allPostsQuery'})(ProCardList)
+export default graphql(allPostsQuerySeacrh, {
+  options:()=> {
+      //console.log('------options------')
+      name: 'allPostsQuerySeacrh'
+      return {variables:{userid:idval2._55}}
+  }
+})(ProCardListSeacrh)

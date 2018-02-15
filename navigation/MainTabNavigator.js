@@ -49,7 +49,17 @@ const SearchTab = StackNavigator({
     screen:SearchScreen,
     path:'/',
     navigationOptions: () => ({
-      title: `SEARCH PROMOTION!`,
+      title: `PROMOTION FOR YOU`,
+      headerTitleStyle: {
+        fontWeight: 'normal',
+      },
+    }),
+  },
+  Detail:{
+    screen:DetailScreen,
+    path:'/',
+    navigationOptions: ({ navigation }) => ({
+      title: `Detail`,
       headerTitleStyle: {
         fontWeight: 'normal',
       },

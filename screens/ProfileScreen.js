@@ -71,7 +71,7 @@ class ProfileScreen extends React.Component {
 
   logOut = async () =>{
     try {
-
+      await AsyncStorage.clear();
       this.props.navigation.navigate('Login')
       console.log('logout success');
     } catch (e) {
