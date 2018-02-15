@@ -13,11 +13,19 @@ import { MonoText } from '../components/StyledText';
 import { Card, Tile, List, ListItem, Button } from 'react-native-elements';
 import { TextField } from 'react-native-material-textfield';
 import PasswordInputText from 'react-native-hide-show-password-input';
+
 export default class ProfileSettingScreen extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      value :'',
+    };
+
+  }
 
   render() {
-
+    const { uID, uFirstname, uLastname, uMail, uPassword } = this.props.navigation.state.params;
     return (
       <ScrollView>
       <View style={styles.container}>
@@ -26,17 +34,17 @@ export default class ProfileSettingScreen extends React.Component {
         title='INFO'>
         <TextField
           label='FirstName'
-          placeholder='Korn'
+          placeholder={uFirstname}
           //onChangeText={(text) => this.setState({firstname: text})}
         />
         <TextField
           label='LasttName'
-          placeholder='Jiradej'
+          placeholder={uLastname}
           //onChangeText={(text) => this.setState({lastname: text})}
         />
         <TextField
           label='Email'
-          placeholder="korn@gmail.com"
+          placeholder={uMail}
           //onChangeText={(text) => this.setState({email: text})}
           //value={this.state.email}
         />

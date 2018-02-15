@@ -25,6 +25,7 @@ query ($emailtemp: String!) {
     firstname
     lastname
     email
+    password
   }
 }`
 
@@ -61,8 +62,8 @@ class ProfileScreen extends React.Component {
       await AsyncStorage.setItem('@userId',data.User.id);
       const res2 = await AsyncStorage.getItem('@userId');
       this.setState({res2});
-      console.log('set success');
-      console.log(res2);
+      //console.log('set success');
+      //console.log(res2);
     } catch (e) {
       console.log('set fail');
     }
@@ -113,7 +114,9 @@ class ProfileScreen extends React.Component {
           <List>
             <ListItem
               title='PROFILE SETTING'
-              onPress={() => this.props.navigation.navigate('ProfileSetting')}
+              onPress={() => this.props.navigation.navigate('ProfileSetting',
+              {uID:data.User.id , uFirstname:data.User.firstname , uLastname:data.User.lastname
+                , uMail:data.User.email , uPassword:data.User.password})}
             />
             <ListItem
               title='My CARD'
