@@ -17,8 +17,17 @@ import CreditCardList from '../components/CreditCardList';
 //const val = AsyncStorage.getItem('@id');
 
 export default class EditCardScreen extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      useridfromparam: props.navigation.state.params.userid
+    }
+  }
   render() {
-    //console.log(val);
+    const {useridfromparam} = this.state
+    /*console.log('------useridfromparam------')
+    console.log(useridfromparam);
+    console.log('------useridfromparam------')*/
     return (
       <ScrollView style={styles.container}>
 
@@ -46,7 +55,7 @@ export default class EditCardScreen extends React.Component {
         backgroundColor='#03A9F4'
         buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 20, marginTop: 10 }}
         title='ADD CARD'
-        onPress={() => this.props.navigation.navigate('AddCard')}
+        onPress={() => this.props.navigation.navigate('AddCard',{userid:useridfromparam})}
 
       />
 

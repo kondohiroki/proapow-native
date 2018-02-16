@@ -64,12 +64,12 @@ class CreditCardList extends React.Component {
 
     render () {
         const {data} = this.props;
-        console.log('------this is idval------')
+        /*console.log('------this is idval------')
         console.log(idval)
         console.log('------this is idval------')
         console.log('------this is data------')
         console.log(data)
-        console.log('------this is data------')
+        console.log('------this is data------')*/
         //this.cardGenerate(data)
         if(data.loading){
             return (
