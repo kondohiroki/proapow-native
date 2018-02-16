@@ -31,14 +31,14 @@ export default class NearbyScreen extends React.Component {
     super(props)
     this.state = {
       initialPosition: {
-        latitude: 14.0687297,
-        longitude: 100.6150029,
+        latitude: 14.0692197,
+        longitude: 100.6068936,
         latitudeDelta: LATTITUDE_DELTA,
         longitudeDelta: LONGTITUDE_DELTA,
       },
       markerPosition: {
-        latitude: 14.062045,
-        longitude: 100.615130
+        latitude: 14.066141,
+        longitude: 100.607548
       },
       markers: [{
         id:1,
@@ -112,7 +112,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:9,
-        inRange: true,
+        inRange: false,
         title: 'ข้าวต้มปลาผ่องศรี',
         coordinates: {
           latitude: 14.0672764,
@@ -120,7 +120,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:10,
-        inRange: true,
+        inRange: false,
         title: 'Delight Cafe+Bakery',
         coordinates: {
           latitude: 14.0659471,
@@ -128,7 +128,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:11,
-        inRange: true,
+        inRange: false,
         title: 'Kitten Kitchen',
         coordinates: {
           latitude: 14.0659378,
@@ -160,7 +160,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:15,
-        inRange: false,
+        inRange: true,
         title: "HOM KRUN COFFEE",
         coordinates: {
           latitude: 14.0724796,
@@ -176,7 +176,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:17,
-        inRange: true,
+        inRange: false,
         title: "Eat@Me",
         coordinates: {
           latitude: 14.0651604,
@@ -198,6 +198,47 @@ export default class NearbyScreen extends React.Component {
         coordinates: {
           latitude: 14.0658624,
           longitude: 100.6223658
+        },
+      },{
+        id:20,
+        inRange: true,
+        title: "Starbucks Coffee Thammasat Rangsit",
+        coordinates: {
+          latitude: 14.0716459,
+          longitude: 100.6003905
+        },
+      },
+      {
+        id:21,
+        inRange: true,
+        title: "Green Canteen",
+        coordinates: {
+          latitude: 14.0719994,
+          longitude: 100.6016349
+        },
+      },{
+        id:22,
+        inRange: false,
+        title: "บ้านราชาวดี",
+        coordinates: {
+          latitude: 14.0742381,
+          longitude: 100.5999745
+        },
+      },{
+        id:23,
+        inRange: true,
+        title: "Five Star",
+        coordinates: {
+          latitude: 14.0740609,
+          longitude: 100.6012769
+        },
+      },{
+        id:24,
+        inRange: true,
+        title: "gelato 44°C",
+        coordinates: {
+          latitude: 14.0659818,
+          longitude: 100.6060343
         },
       },]
     }
@@ -309,9 +350,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   radius: {
-    height: 172,
-    width: 172,
-    borderRadius: 172 /2,
+    height: 200,
+    width: 200,
+    borderRadius: 200/2,
     overflow: 'hidden',
     backgroundColor: 'rgba(0, 122, 255, 0.1)',
     borderWidth: 1,

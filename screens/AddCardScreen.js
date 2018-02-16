@@ -53,49 +53,44 @@ class AddCardScreen extends React.Component {
       this.setState({bankandtype: 'cjdoryntw0cc40170h44d2ggl'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='KRUNGSRI BANK' && typename=='VISA'){
       this.setState({bankandtype: 'cjdoruz770cb10170dx9sg1ql'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='TMB BANK' && typename=='VISA'){
       this.setState({bankandtype: 'cjdorukpj0cao0170wmdqxcqo'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='SCB BANK' && typename=='VISA'){
       this.setState({bankandtype: 'cjdorl0s60c7i0170r6z3981k'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='KTB BANK' && typename=='VISA'){
       this.setState({bankandtype: 'cjdork6ls0c720170ua5naxko'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='KASIKORN BANK' && typename=='VISA'){
       this.setState({bankandtype: 'cjdorga700c5j0170v1uomtis'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }else if(bankname=='BANKKOK BANK' && typename=='VISA'){
       //console.log('check run')
       this.setState({bankandtype: 'cjdoqc1pc0bzk01700g9nd06r'}, function () {
         const cabid = this.state.bankandtype
         this.createPost(cabid)
-        //console.log(cabid)
       })
     }
   }
 
   createPost = async (cabid) => {
+    const { state, goBack } = this.props.navigation;    
+    const params = state.params || {};
    // const prop = this.props
     const { cardnumber, cardname, expm, expy, useridfromparam} = this.state
     expmnumber=expm*1
@@ -103,7 +98,7 @@ class AddCardScreen extends React.Component {
     await this.props.addCardMutate({
       variables: {cabid, cardnumber, cardname, expmnumber, expynumber, useridfromparam}
     })
-    //this.props.navigation.navigate('EditCard',{userid:this.props.navigation.state.params.useridfromparam})
+    this.props.navigation.goBack(params.go_back_key)
     //this.props.navigation.navigate('Home')
   }
 
@@ -183,8 +178,6 @@ class AddCardScreen extends React.Component {
           onChangeText={(text) => this.setState({expy: text})}
           //value={this.state.email}
         />
-
-
         <Button
           backgroundColor= '#03A9F4'
           buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginTop: 10, width: '100%',}}

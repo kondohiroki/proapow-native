@@ -25,6 +25,7 @@ export default class EditCardScreen extends React.Component {
   }
   render() {
     const {useridfromparam} = this.state
+    const { state, navigate } = this.props.navigation
     /*console.log('------useridfromparam------')
     console.log(useridfromparam);
     console.log('------useridfromparam------')*/
@@ -55,7 +56,7 @@ export default class EditCardScreen extends React.Component {
         backgroundColor='#03A9F4'
         buttonStyle={{borderRadius: 2, marginLeft: 0, marginRight: 0, marginBottom: 20, marginTop: 10 }}
         title='ADD CARD'
-        onPress={() => this.props.navigation.navigate('AddCard',{userid:useridfromparam})}
+        onPress={() => this.props.navigation.navigate('AddCard',{userid:useridfromparam,go_back_key: state.key})}
 
       />
 
