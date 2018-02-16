@@ -23,22 +23,22 @@ const ASPECT_RATIO = width/height
 const LATTITUDE_DELTA = 0.0322
 const LONGTITUDE_DELTA = LATTITUDE_DELTA * ASPECT_RATIO
 
-const pin = '../assets/images/redpin.png'
-const robot = '../assets/images/greenpin.png'
+const pin = '../assets/images/redpin2.png'
+const robot = '../assets/images/greenpin2.png'
 
 export default class NearbyScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       initialPosition: {
-        latitude: 0,
-        longitude: 0,
-        latitudeDelta: 0,
-        longitudeDelta: 0,
+        latitude: 14.0687297,
+        longitude: 100.6150029,
+        latitudeDelta: LATTITUDE_DELTA,
+        longitudeDelta: LONGTITUDE_DELTA,
       },
       markerPosition: {
-        latitude: 0,
-        longitude: 0
+        latitude: 14.062045,
+        longitude: 100.615130
       },
       markers: [{
         id:1,
@@ -102,6 +102,103 @@ export default class NearbyScreen extends React.Component {
           latitude: 13.8247659,
           longitude: 100.5153173
         },
+      },{
+        id:8,
+        inRange: true,
+        title: 'เป่าปาก',
+        coordinates: {
+          latitude: 14.0671245,
+          longitude: 100.6185998
+        },
+      },{
+        id:9,
+        inRange: true,
+        title: 'ข้าวต้มปลาผ่องศรี',
+        coordinates: {
+          latitude: 14.0672764,
+          longitude: 100.6172807
+        },
+      },{
+        id:10,
+        inRange: true,
+        title: 'Delight Cafe+Bakery',
+        coordinates: {
+          latitude: 14.0659471,
+          longitude: 100.6131735
+        },
+      },{
+        id:11,
+        inRange: true,
+        title: 'Kitten Kitchen',
+        coordinates: {
+          latitude: 14.0659378,
+          longitude: 100.611355
+        },
+      },{
+        id:12,
+        inRange: false,
+        title: "Cowboy's Hous",
+        coordinates: {
+          latitude: 14.0648898,
+          longitude: 100.6089458
+        },
+      },{
+        id:13,
+        inRange: false,
+        title: "Rest'er Day",
+        coordinates: {
+          latitude: 14.0643076,
+          longitude: 100.6073339
+        },
+      },{
+        id:14,
+        inRange: false,
+        title: "Rest'er Day",
+        coordinates: {
+          latitude: 14.0736993,
+          longitude: 100.6152537
+        },
+      },{
+        id:15,
+        inRange: false,
+        title: "HOM KRUN COFFEE",
+        coordinates: {
+          latitude: 14.0724796,
+          longitude: 100.6076114
+        },
+      },{
+        id:16,
+        inRange: false,
+        title: "เอ็ม กาแฟนมสด (M coffee&milk) สำนักงานแฟรนไชส์กาแฟ",
+        coordinates: {
+          latitude: 14.0596901,
+          longitude: 100.6146555
+        },
+      },{
+        id:17,
+        inRange: true,
+        title: "Eat@Me",
+        coordinates: {
+          latitude: 14.0651604,
+          longitude: 100.6139628
+        },
+      },
+      {
+        id:18,
+        inRange: false,
+        title: "Pak Tai Bistro",
+        coordinates: {
+          latitude: 14.0658927,
+          longitude: 100.6219593
+        },
+      },{
+        id:19,
+        inRange: false,
+        title: "Mueang Korn 2 Restaurant",
+        coordinates: {
+          latitude: 14.0658624,
+          longitude: 100.6223658
+        },
       },]
     }
   }
@@ -124,16 +221,16 @@ export default class NearbyScreen extends React.Component {
           latitudeDelta: LATTITUDE_DELTA,
           longitudeDelta: LONGTITUDE_DELTA
         }
-        /*onMapReady=() => {
+        onMapReady=() => {
           this.setState({ regionSet: true });
-  }*//*
+        }
         this.setState({initialPosition: initialRegion})
         this.setState({markerPosition: initialRegion})
-  },
+        },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 25000, maximumAge: 3600000})*/
 
-      this.watchID = navigator.geolocation.watchPosition((position) => {
+     /* this.watchID = navigator.geolocation.watchPosition((position) => {
         var lat = parseFloat(position.coords.latitude)
         var long = parseFloat(position.coords.longitude)
         var lastRegion = {
@@ -156,7 +253,7 @@ export default class NearbyScreen extends React.Component {
       })
       },
       (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10})
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10})*/
   }
 
   componentWillUnmount() {
@@ -169,6 +266,7 @@ export default class NearbyScreen extends React.Component {
         <MapView
           style={styles.map}
           region={this.state.initialPosition}
+          zoomEnabled={false}
         >
           {this.state.markers.map(function(marker){
             if(marker.inRange){
@@ -189,7 +287,8 @@ export default class NearbyScreen extends React.Component {
           })}
           <MapView.Marker
             coordinate={this.state.markerPosition}>
-              <View style={styles.trackMarker}>
+              <View style={styles.radius}>
+                <View style={styles.trackMarker}/>
               </View>
           </MapView.Marker>
         </MapView>
@@ -210,9 +309,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   radius: {
-    height: 100,
-    width: 100,
-    borderRadius: 100/2,
+    height: 172,
+    width: 172,
+    borderRadius: 172 /2,
     overflow: 'hidden',
     backgroundColor: 'rgba(0, 122, 255, 0.1)',
     borderWidth: 1,
