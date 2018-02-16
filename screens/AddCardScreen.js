@@ -50,17 +50,41 @@ class AddCardScreen extends React.Component {
   checkingBank = () => {
     const {bankname, typename, bankandtype} = this.state
     if(bankname=='GOVERNMENT SAVING BANK' && typename==='VISA'){
-      this.setState({bankandtype: 'cjdoryntw0cc40170h44d2ggl'})
+      this.setState({bankandtype: 'cjdoryntw0cc40170h44d2ggl'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='KRUNGSRI BANK' && typename=='VISA'){
-      this.setState({bankandtype: 'cjdoruz770cb10170dx9sg1ql'})
+      this.setState({bankandtype: 'cjdoruz770cb10170dx9sg1ql'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='TMB BANK' && typename=='VISA'){
-      this.setState({bankandtype: 'cjdorukpj0cao0170wmdqxcqo'})
+      this.setState({bankandtype: 'cjdorukpj0cao0170wmdqxcqo'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='SCB BANK' && typename=='VISA'){
-      this.setState({bankandtype: 'cjdorl0s60c7i0170r6z3981k'})
+      this.setState({bankandtype: 'cjdorl0s60c7i0170r6z3981k'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='KTB BANK' && typename=='VISA'){
-      this.setState({bankandtype: 'cjdork6ls0c720170ua5naxko'})
+      this.setState({bankandtype: 'cjdork6ls0c720170ua5naxko'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='KASIKORN BANK' && typename=='VISA'){
-      this.setState({bankandtype: 'cjdorga700c5j0170v1uomtis'})
+      this.setState({bankandtype: 'cjdorga700c5j0170v1uomtis'}, function () {
+        const cabid = this.state.bankandtype
+        this.createPost(cabid)
+        //console.log(cabid)
+      })
     }else if(bankname=='BANKKOK BANK' && typename=='VISA'){
       //console.log('check run')
       this.setState({bankandtype: 'cjdoqc1pc0bzk01700g9nd06r'}, function () {

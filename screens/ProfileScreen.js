@@ -120,7 +120,7 @@ class ProfileScreen extends React.Component {
             />
             <ListItem
               title='My CARD'
-              onPress={() => this.props.navigation.navigate('EditCard',{userid:this.setState.res2})}
+              onPress={() => this.props.navigation.navigate('EditCard',{userid:this.state.res2})}
             />
             <ListItem
               title='MY SHOP'
