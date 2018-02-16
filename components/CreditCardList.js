@@ -77,25 +77,35 @@ class CreditCardList extends React.Component {
                   <ActivityIndicator size="large" color="#0000ff" />
                 </View>
             )
-        }
-        return (
-            <View style={styles.container}>
-                <ListView
-                    enableEmptySections={true}
-                    dataSource={this.state.dataSource}
-                    renderRow={(data) => (
-                        <CreditCard
-                            cardName={data.cardName}
-                            cardNo={data.cardNo}
-                            expMM={data.expMM}
-                            expYY={data.expYY}
-                            cardbankno={data.cardAndBank.bank.bankName}
-                            cardtype={data.cardAndBank.cardType.cardtypeName}
-                        />
-                    )}
-                />
-            </View>
-        )
+        }else if (data.error) {
+            return(
+              <Button
+                backgroundColor= '#03A9F4'
+                buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 15, width: '100%',}}
+                title='Reload'
+                onPress={() => data.refetch()}
+              />
+            )
+          }else{
+            return (
+                <View style={styles.container}>
+                    <ListView
+                        enableEmptySections={true}
+                        dataSource={this.state.dataSource}
+                        renderRow={(data) => (
+                            <CreditCard
+                                cardName={data.cardName}
+                                cardNo={data.cardNo}
+                                expMM={data.expMM}
+                                expYY={data.expYY}
+                                cardbankno={data.cardAndBank.bank.bankName}
+                                cardtype={data.cardAndBank.cardType.cardtypeName}
+                            />
+                        )}
+                    />
+                </View>
+            )
+          }
     }
 }
 
