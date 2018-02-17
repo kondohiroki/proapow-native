@@ -17,8 +17,8 @@ const idval2 = AsyncStorage.getItem('@userId')
 const allPostsQuerySeacrh = gql`
 query ($userid: ID!){
   allPromotions(filter:{
-    cardAndBanks_none:{
-     	cardLists_none:{
+    cardAndBanks_some:{
+     	cardLists_some:{
       	user:{
         	id:$userid
       	}
