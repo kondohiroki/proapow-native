@@ -31,14 +31,14 @@ export default class NearbyScreen extends React.Component {
     super(props)
     this.state = {
       initialPosition: {
-        latitude: 14.0692197,
-        longitude: 100.6068936,
+        latitude: 0,
+        longitude: 0,
         latitudeDelta: LATTITUDE_DELTA,
         longitudeDelta: LONGTITUDE_DELTA,
       },
       markerPosition: {
-        latitude: 14.066141,
-        longitude: 100.607548
+        latitude: 0,
+        longitude: 0
       },
       markers: [{
         id:1,
@@ -104,7 +104,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:8,
-        inRange: true,
+        inRange: false,
         title: 'เป่าปาก',
         coordinates: {
           latitude: 14.0671245,
@@ -160,7 +160,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:15,
-        inRange: true,
+        inRange: false,
         title: "HOM KRUN COFFEE",
         coordinates: {
           latitude: 14.0724796,
@@ -201,7 +201,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:20,
-        inRange: true,
+        inRange: false,
         title: "Starbucks Coffee Thammasat Rangsit",
         coordinates: {
           latitude: 14.0716459,
@@ -210,7 +210,7 @@ export default class NearbyScreen extends React.Component {
       },
       {
         id:21,
-        inRange: true,
+        inRange: false,
         title: "Green Canteen",
         coordinates: {
           latitude: 14.0719994,
@@ -226,7 +226,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:23,
-        inRange: true,
+        inRange: false,
         title: "Five Star",
         coordinates: {
           latitude: 14.0740609,
@@ -234,7 +234,7 @@ export default class NearbyScreen extends React.Component {
         },
       },{
         id:24,
-        inRange: true,
+        inRange: false,
         title: "gelato 44°C",
         coordinates: {
           latitude: 14.0659818,
@@ -271,7 +271,7 @@ export default class NearbyScreen extends React.Component {
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 25000, maximumAge: 3600000})*/
 
-     /* this.watchID = navigator.geolocation.watchPosition((position) => {
+     this.watchID = navigator.geolocation.watchPosition((position) => {
         var lat = parseFloat(position.coords.latitude)
         var long = parseFloat(position.coords.longitude)
         var lastRegion = {
@@ -294,7 +294,7 @@ export default class NearbyScreen extends React.Component {
       })
       },
       (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10})*/
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10})
   }
 
   componentWillUnmount() {
@@ -328,9 +328,9 @@ export default class NearbyScreen extends React.Component {
           })}
           <MapView.Marker
             coordinate={this.state.markerPosition}>
-              <View style={styles.radius}>
+              {/* <View style={styles.radius}> */}
                 <View style={styles.trackMarker}/>
-              </View>
+              {/* </View> */}
           </MapView.Marker>
         </MapView>
       </View>
