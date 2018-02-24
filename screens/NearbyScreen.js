@@ -12,7 +12,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-import MapView from 'react-native-maps';
+import MapView, { Circle } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import geolib from 'geolib';
 
@@ -326,12 +326,28 @@ export default class NearbyScreen extends React.Component {
               />
             }
           })}
-          <MapView.Marker
+          {/* <MapView.Marker
             coordinate={this.state.markerPosition}>
-              {/* <View style={styles.radius}> */}
+              <View style={styles.radius}>
                 <View style={styles.trackMarker}/>
-              {/* </View> */}
-          </MapView.Marker>
+              </View> 
+          </MapView.Marker> */}
+          <Circle 
+            center={this.state.markerPosition}
+            radius={1000}
+            strokeColor={'rgb(0, 179, 0)'}
+            fillColor={'rgba(0, 179, 0, 0.1)'}
+          >
+          </Circle>
+          <Circle
+            center={this.state.markerPosition}
+            radius={50}
+            fillColor={'rgb(26, 255, 26)'}
+          />
+          {/* <MapView.Marker
+            coordinate={this.state.markerPosition}>
+            <View style={styles.trackMarker}/>
+          </MapView.Marker> */}
         </MapView>
       </View>
     );
